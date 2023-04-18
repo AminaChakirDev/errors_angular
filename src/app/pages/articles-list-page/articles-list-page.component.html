@@ -1,0 +1,9 @@
+<div class="articles-container">
+  <ng-container *ngFor="let article of articles">
+    <div class="article-container">
+      <img src="{{ article.imageUrl }}" alt="" [routerLink]="['/articles', article.id]"/>
+      <p>{{ article.title }}</p>
+      <p class="article-content">{{ article.content }}</p>
+    </div>
+  </ng-container>
+</div>

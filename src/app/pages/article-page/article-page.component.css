@@ -1,0 +1,35 @@
+.article-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 24px;
+}
+
+.article-container img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.article-title,
+.article-content {
+  width: 100%;
+}
+
+.article-title {
+  font-size: 24px;
+}
+
+.article-category,
+.article-date {
+  color: #d9d9d9;
+  font-size: 0.6em;
+}
+
+.social-media-container i {
+  margin-right: 8px;
+  cursor: pointer;
+}

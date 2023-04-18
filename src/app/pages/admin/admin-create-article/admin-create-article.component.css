@@ -1,0 +1,8 @@
+.file-input {
+  display: none;
+}
+
+.upload-image-container img {
+  width: 30%;
+  object-fit: cover;
+}

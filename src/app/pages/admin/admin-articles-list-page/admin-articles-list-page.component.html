@@ -1,0 +1,22 @@
+<h2>Liste des articles</h2>
+<button [routerLink]="['/admin/articles/create']">Créer un article</button>
+<table>
+  <tr>
+    <th>id</th>
+    <th>Titre</th>
+    <th>Contenu</th>
+    <th>Catégorie</th>
+    <th>Créé le</th>
+    <th>Mis à jour le</th>
+  </tr>
+  <ng-container *ngFor="let article of articles">
+    <tr [routerLink]="['/admin/articles', article.id]">
+      <td>{{ article.id }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.content }}</td>
+      <td>{{ article.category.name }}</td>
+      <td>{{ article.createdAt | date : "dd/MM/yy à HH:mm" }}</td>
+      <td>{{ article.updatedAt | date : "dd/MM/yy à HH:mm" }}</td>
+    </tr>
+  </ng-container>
+</table>

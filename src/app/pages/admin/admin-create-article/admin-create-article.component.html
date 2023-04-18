@@ -1,0 +1,35 @@
+<form (ngSubmit)="createArticle()" [formGroup]="articleForm" #myForm="ngForm">
+  <fieldset>
+    <label for="title">Titre</label>
+    <input type="text" formControlName="title" />
+  </fieldset>
+  <fieldset>
+    <label for="content">Contenu</label>
+    <input type="text" formControlName="content" />
+  </fieldset>
+  <fieldset>
+    <label for="slug">Slug</label>
+    <input type="text" formControlName="slug" />
+  </fieldset>
+
+  <select name="categories" id="categories" formControlName="cat">
+    <option default>Choisir une catégorie</option>
+    <option *ngFor="let category of categories" value="{{ category.id }}">
+      {{ category.name }}
+    </option>
+  </select>
+
+  <input
+    type="file"
+    class="file-input"
+    (change)="onFileSelected($event)"
+    #fileUpload
+  />
+
+  <div class="upload-image-container">
+    <img src="{{ imageToDisplay }}" alt="" />
+    <button type="button" (click)="fileUpload.click()">Choisir une image</button>
+  </div>
+
+  <input type="submit" value="Créer" />
+</form>
