@@ -13,26 +13,18 @@ import { ApiService } from 'src/app/shared/services/api.service';
   styleUrls: ['./admin-create-article.component.css'],
 })
 export class AdminCreateArticleComponent {
-  imageInfo: any;
-
-  fileName = '';
-
-  imageToDisplay: string =
-    'https://res.cloudinary.com/dz632zpoz/image/upload/v1681772772/j0o1jw2cglwz9o1hvxre.png';
-
   categories!: Category[];
 
   articleForm = this.formBuilder.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
     slug: ['', Validators.required],
-    cat: [null]
+    cat: [null],
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -41,7 +33,10 @@ export class AdminCreateArticleComponent {
 
   createArticle() {
     this.apiService
-      .addArticle({...this.articleForm.value, imageUrl: this.imageInfo.url}, this.articleForm.value.cat!)
+      .addArticle(
+        this.articleForm.value,
+        this.articleForm.value.cat!
+      )
       .subscribe((data) => {
         console.log(data);
       });
@@ -52,22 +47,5 @@ export class AdminCreateArticleComponent {
     this.apiService.getCategories().subscribe((data) => {
       this.categories = data;
     });
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    const formData: FormData = new FormData();
-
-    formData.append('file', file);
-    formData.append('upload_preset', 'presentation');
-    formData.append('cloud_name', 'dz632zpoz');
-
-    this.http
-      .post('https://api.cloudinary.com/v1_1/dz632zpoz/image/upload', formData)
-      .subscribe((res) => {
-        this.imageInfo = res;
-        this.imageToDisplay = this.imageInfo.url;
-      });
   }
 }

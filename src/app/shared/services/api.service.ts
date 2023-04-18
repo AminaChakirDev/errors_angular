@@ -11,24 +11,6 @@ export class ApiService {
 
   url: string = 'http://localhost:8080/';
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `,
-        error.error
-      );
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      () => new Error('Something bad happened; please try again later.')
-    );
-  }
-
   getArticles = () => {
     return this.http.get<any>(`${this.url}articles`);
   };
@@ -39,8 +21,7 @@ export class ApiService {
 
   getArticleById = (articleId: number) => {
     return this.http
-      .get<any>(`${this.url}articles/${articleId}`)
-      .pipe(catchError(this.handleError));
+      .get<any>(`${this.url}articles/${articleId}`);
   };
 
   addArticle(

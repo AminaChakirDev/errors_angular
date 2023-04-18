@@ -19,17 +19,5 @@
     </option>
   </select>
 
-  <input
-    type="file"
-    class="file-input"
-    (change)="onFileSelected($event)"
-    #fileUpload
-  />
-
-  <div class="upload-image-container">
-    <img src="{{ imageToDisplay }}" alt="" />
-    <button type="button" (click)="fileUpload.click()">Choisir une image</button>
-  </div>
-
   <input type="submit" value="Créer" />
 </form>
