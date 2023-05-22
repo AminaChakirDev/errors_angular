@@ -9,12 +9,36 @@ import { ArticlesListPageComponent } from './pages/articles-list-page/articles-l
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AdminCategoriesListPageComponent } from './pages/admin/admin-categories-list-page/admin-categories-list-page.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
     path: '',
     title: "Page d'accueil",
     component: HomePageComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupPageComponent,
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      userType: 'visitorOnly',
+    },
+  },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      userType: 'user',
+    },
   },
   {
     path: 'articles',
@@ -28,26 +52,52 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminHomePageComponent,
-  },
-  {
-    path: 'admin/articles',
-    component: AdminArticlesListPageComponent,
-  },
-  {
-    path: 'admin/articles/create',
-    component: AdminCreateArticleComponent,
-  },
-  {
-    path: 'admin/articles/:articleId',
-    component: AdminArticlePageComponent,
-  },
-  {
-    path: 'admin/categories',
-    component: AdminCategoriesListPageComponent,
-  },
-  {
-    path: 'admin/categories/:categoryId',
-    component: AdminArticlePageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      userType: 'admin',
+    },
+    children: [
+      {
+        path: 'articles',
+        component: AdminArticlesListPageComponent,
+        canActivate: [AuthGuard],
+        data: {
+          userType: 'admin',
+        },
+      },
+      {
+        path: 'articles/create',
+        component: AdminCreateArticleComponent,
+        canActivate: [AuthGuard],
+        data: {
+          userType: 'admin',
+        },
+      },
+      {
+        path: 'articles/:articleId',
+        component: AdminArticlePageComponent,
+        canActivate: [AuthGuard],
+        data: {
+          userType: 'admin',
+        },
+      },
+      {
+        path: 'categories',
+        component: AdminCategoriesListPageComponent,
+        canActivate: [AuthGuard],
+        data: {
+          userType: 'admin',
+        },
+      },
+      {
+        path: 'categories/:categoryId',
+        component: AdminArticlePageComponent,
+        canActivate: [AuthGuard],
+        data: {
+          userType: 'admin',
+        },
+      },
+    ],
   },
   {
     path: '**',

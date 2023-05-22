@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <fieldset>
+    <legend>Me connecter</legend>
+    <div class="form-field">
+      <label>Email :</label>
+      <input name="email" formControlName="email" />
+    </div>
+    <div class="form-field">
+      <label>Mot de passe:</label>
+      <input name="password" formControlName="password" type="password" />
+    </div>
+  </fieldset>
+  <div class="form-buttons">
+    <button class="button button-primary" (click)="login()">
+      Me connecter
+    </button>
+  </div>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</form>

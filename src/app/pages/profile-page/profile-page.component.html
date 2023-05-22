@@ -1,0 +1,14 @@
+<p>Bienvenue sur la page Profile de {{ user.username }}</p>
+<p>Email : {{user.email}}</p>
+<p>Cette page ne peut être accessible que par l'utilisateur concerné</p>
+<p>
+  Le lien vers cette page profil (/profile) depuis la barre de navigation
+  n'apparait que si nous avons un user enregistré dans le local storage
+  (enregistré lors du login) (voir ngIf dans app.component.html)
+</p>
+<p>
+  Si le visiteur ecrit directement l'url /profile dans la barre de navigation
+  (ne jamais faire confiance à un utilisateur ;-) ), l'affichage ne lui est pas
+  autorisé grâce aux guards (voir app.routing + authGuard) et il sera redirigé
+  vers la page login
+</p>

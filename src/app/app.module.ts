@@ -17,6 +17,13 @@ import { AdminArticlesListPageComponent } from './pages/admin/admin-articles-lis
 import { AdminCategoriesListPageComponent } from './pages/admin/admin-categories-list-page/admin-categories-list-page.component';
 import { AdminCreateArticleComponent } from './pages/admin/admin-create-article/admin-create-article.component';
 
+import { httpInterceptorProviders } from './shared/interceptors';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +38,10 @@ import { AdminCreateArticleComponent } from './pages/admin/admin-create-article/
     AdminArticlesListPageComponent,
     AdminCategoriesListPageComponent,
     AdminCreateArticleComponent,
+    LoginPageComponent,
+    LogoutComponent,
+    SignupPageComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +49,7 @@ import { AdminCreateArticleComponent } from './pages/admin/admin-create-article/
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

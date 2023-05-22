@@ -5,10 +5,10 @@
   text-decoration: none;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
 }
 
 header {
-  height: 100vh;
   background-image: linear-gradient(
       to right,
       rgba(243, 72, 247, 0.6),
@@ -23,10 +23,26 @@ header {
   justify-content: flex-end;
 }
 
-.navbar a {
+.navbar ul {
+  display: flex;
+  margin: 20px;
+  color: white;
+}
+
+.navbar ul li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li a {
   display: block;
   margin: 20px;
   color: white;
+}
+
+.fa-right-from-bracket {
+  top: 50%;
+  left: 50%;
 }
 
 .header-text {

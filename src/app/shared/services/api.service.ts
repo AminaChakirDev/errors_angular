@@ -9,7 +9,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  url: string = 'http://localhost:8080/';
+  url: string = 'http://localhost:8080/api/';
 
   getArticles = () => {
     return this.http.get<any>(`${this.url}articles`);

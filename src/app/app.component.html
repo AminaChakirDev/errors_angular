@@ -1,20 +1,32 @@
 <header>
   <nav class="navbar">
-    <a [routerLink]="['']">Accueil</a>
-    <a [routerLink]="['/articles']">Articles</a>
-    <a [routerLink]="['/team']">Equipe</a>
-    <a [routerLink]="['/contact']">Contact</a>
+    <ul>
+      <li><a [routerLink]="['']">Accueil</a></li>
+      <li><a [routerLink]="['/articles']">Articles</a></li>
+      <li><a [routerLink]="['/team']">Equipe</a></li>
+      <li><a [routerLink]="['/contact']">Contact</a></li>
+      <li *ngIf="userInfo.roles && userInfo.roles.includes('ROLE_USER')">
+        <a [routerLink]="['/profile']"
+          ><i class="fa-solid fa-user" style="color: #ffffff"></i
+        ></a>
+      </li>
+      <li *ngIf="userInfo.roles && userInfo.roles.includes('ROLE_ADMIN')">
+        <a [routerLink]="['/admin']"
+          ><i class="fa-solid fa-lock" style="color: #ffffff"></i
+        ></a>
+      </li>
+      <li *ngIf="!userInfo.username"><a routerLink="/signup">M'inscrire</a></li>
+      <li *ngIf="!userInfo.username">
+        <a routerLink="/login">Me connecter</a>
+      </li>
+      <li *ngIf="isLoggedIn"><app-logout></app-logout></li>
+    </ul>
   </nav>
+
+  <p *ngIf="userInfo.username" class="header-text">Bienvenue {{ userInfo?.username }} !</p>
   <div class="header-text-container">
     <p class="header-text">Bonjour et bienvenue sur le</p>
     <h1 class="header-text title">DevGones Blog</h1>
-    <p class="header-text">
-      Ce blog a pour but de s'entrainer à développer une application front-end
-      Angular et back-end Spring. Il traite des sujets relatif à la création
-      d'une application de type blog, destinée à proposer à ses visiteurs la
-      lecture d'articles, organisés par cétagories, et affichant une image de
-      présentation.
-    </p>
   </div>
 </header>
 <router-outlet></router-outlet>

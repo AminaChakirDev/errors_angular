@@ -3,13 +3,13 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 50vh;
   padding: 24px;
 }
 
 .article-container img {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   object-fit: cover;
   border-radius: 10px;
 }
