@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
-  errorMessage: string | null = null;
+  
 
   form = this.fb.group({
     email: ['', Validators.required],

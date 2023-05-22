@@ -9,8 +9,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./signup-page.component.css'],
 })
 export class SignupPageComponent {
-  
-  errorMessage: string | null = null;
 
   form = this.fb.group({
     username: ['', Validators.required],
